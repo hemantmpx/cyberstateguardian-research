@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "event_id": "evt-service-001",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:14:30Z",
+      "normalized_type": "service_created",
+      "actor": {
+        "user": "LAB/Administrator",
+        "process": "powershell.exe"
+      },
+      "target": {
+        "type": "service",
+        "key": "service:systemupdate"
+      },
+      "attributes": {
+        "service_name": "SystemUpdate",
+        "binary_path": "c:/programdata/systemupdate/systemupdate.exe"
+      },
+      "source": "synthetic_fixture",
+      "source_reference": {
+        "fixture": "svc-create-consistent.json"
+      },
+      "synthetic": true,
+      "scenario_id": "svc-create-consistent",
+      "metadata": {
+        "fixture_kind": "scenario_event"
+      }
+    }
+  ]
+}

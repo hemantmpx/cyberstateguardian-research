@@ -1,0 +1,16 @@
+{
+  "scenario_id": "telemetry-2-noncritical-removed",
+  "description": "Same service persistence with the process event removed but key creation telemetry retained.",
+  "classification": "malicious-simulation",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "svc-create-consistent",
+  "telemetry_condition": "noncritical_removed",
+  "event_source_status": "degraded",
+  "expected_deltas": [
+    {"category": "service", "delta_type": "ADD", "object_key": "service:systemupdate"}
+  ],
+  "expected_reconciliation": "CONSISTENT",
+  "ground_truth_notes": "Noncritical contextual telemetry is removed; the service-creation event remains.",
+  "metadata": {"synthetic": true, "telemetry_study": true, "expect_telemetry_inconsistency": false}
+}

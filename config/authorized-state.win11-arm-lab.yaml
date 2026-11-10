@@ -1,0 +1,25 @@
+version: "2026-09-22-win11-arm-lab-baseline-v1"
+hosts:
+  win11-arm-lab:
+    # This is a narrow, captured research baseline. Objects not listed here
+    # remain UNKNOWN and are intentionally visible to the experiment.
+    expected_services:
+      - object_key: service:wazuhsvc
+        name: Wazuh
+        allowed_operations: [ADD, MODIFY]
+        attributes:
+          service_name: WazuhSvc
+          display_name: Wazuh
+          binary_path: '"c:/program files (x86)/ossec-agent/wazuh-agent.exe"'
+          start_mode: auto
+          account: localsystem
+    expected_listeners:
+      - object_key: listener:tcp:0.0.0.0:22
+        allowed_operations: [ADD, MODIFY]
+        attributes:
+          protocol: tcp
+          local_address: 0.0.0.0
+          local_port: 22
+    approved_changes: []
+    maintenance_windows: []
+    violating_objects: []

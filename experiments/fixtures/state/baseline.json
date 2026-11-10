@@ -1,0 +1,101 @@
+{
+  "snapshot_id": "snapshot-baseline-win-lab-01",
+  "host_id": "win-lab-01",
+  "built_at": "2026-09-13T20:00:00Z",
+  "source": "synthetic_fixture",
+  "category_statuses": [
+    {
+      "category": "process",
+      "status": "healthy",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:00:00Z"
+    },
+    {
+      "category": "listener",
+      "status": "healthy",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:00:00Z"
+    },
+    {
+      "category": "service",
+      "status": "healthy",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:00:00Z"
+    },
+    {
+      "category": "privileged_group",
+      "status": "healthy",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:00:00Z"
+    }
+  ],
+  "objects": [
+    {
+      "category": "process",
+      "object_key": "process:c:/windows/explorer.exe:lab/user:2026-09-13T19:00:00+00:00",
+      "attributes": {
+        "pid": 4200,
+        "ppid": 1100,
+        "name": "explorer.exe",
+        "executable_path": "c:/windows/explorer.exe",
+        "username": "lab/user",
+        "create_time": "2026-09-13T19:00:00+00:00"
+      },
+      "source_timestamp": "2026-09-13T20:00:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    },
+    {
+      "category": "service",
+      "object_key": "service:eventlog",
+      "attributes": {
+        "service_name": "EventLog",
+        "display_name": "Windows Event Log",
+        "status": "running",
+        "start_mode": "auto",
+        "binary_path": "c:/windows/system32/svchost.exe -k localservice",
+        "account": "nt authority/localservice"
+      },
+      "source_timestamp": "2026-09-13T20:00:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    },
+    {
+      "category": "service",
+      "object_key": "service:windefend",
+      "attributes": {
+        "service_name": "WinDefend",
+        "display_name": "Microsoft Defender Antivirus Service",
+        "status": "running",
+        "start_mode": "auto",
+        "binary_path": "c:/programdata/microsoft/windows defender/platform/msmpeng.exe",
+        "account": "localsystem"
+      },
+      "source_timestamp": "2026-09-13T20:00:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    },
+    {
+      "category": "listener",
+      "object_key": "listener:tcp:0.0.0.0:3389",
+      "attributes": {
+        "protocol": "tcp",
+        "local_address": "0.0.0.0",
+        "local_port": 3389,
+        "pid": 1200,
+        "process_name": "svchost.exe"
+      },
+      "source_timestamp": "2026-09-13T20:00:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    }
+  ],
+  "metadata": {
+    "synthetic": true,
+    "fixture": "baseline"
+  }
+}

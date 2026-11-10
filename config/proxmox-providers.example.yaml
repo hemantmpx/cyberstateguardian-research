@@ -1,0 +1,23 @@
+state_provider:
+  type: wazuh
+  wazuh_url: https://csg-wazuh.example.invalid
+  note: Placeholder only. Replace after inspecting the real Wazuh API and index schema.
+
+event_provider:
+  type: wazuh
+  wazuh_url: https://csg-wazuh.example.invalid
+  note: Placeholder only. Do not code from this file as if fields are verified.
+
+hosts:
+  - host_id: csg-target-01
+    hostname: csg-target
+    role: windows-target
+    os: windows-server-or-windows-11
+    architecture: amd64
+    enabled: true
+  - host_id: csg-kali-01
+    hostname: csg-kali
+    role: experiment-generator
+    os: kali-linux
+    architecture: amd64
+    enabled: false

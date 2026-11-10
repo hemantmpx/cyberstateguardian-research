@@ -1,0 +1,110 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: csg-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cyberstateguardian}
+      POSTGRES_USER: ${POSTGRES_USER:-csg}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-for-local-lab}
+    volumes:
+      - csg_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-csg} -d ${POSTGRES_DB:-cyberstateguardian}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: csg-api
+    command: sh -c "alembic upgrade head && uvicorn csg.main:app --host 0.0.0.0 --port 8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://csg:change-me-for-local-lab@postgres:5432/cyberstateguardian}
+      CSG_STATE_PROVIDER: ${CSG_STATE_PROVIDER:-fixture}
+      CSG_EVENT_PROVIDER: ${CSG_EVENT_PROVIDER:-fixture}
+      CSG_EVENT_TIME_TOLERANCE_SECONDS: ${CSG_EVENT_TIME_TOLERANCE_SECONDS:-20}
+      CSG_LAB_SHARED_TOKEN: ${CSG_LAB_SHARED_TOKEN:-replace-with-lab-token}
+      CSG_WAZUH_API_URL: ${CSG_WAZUH_API_URL:-https://host.docker.internal:55000}
+      CSG_WAZUH_INDEXER_URL: ${CSG_WAZUH_INDEXER_URL:-https://host.docker.internal:9200}
+      CSG_WAZUH_DASHBOARD_URL: ${CSG_WAZUH_DASHBOARD_URL:-https://localhost:8443}
+      CSG_WAZUH_API_USER: ${CSG_WAZUH_API_USER:-wazuh}
+      CSG_WAZUH_API_PASSWORD: ${CSG_WAZUH_API_PASSWORD:-}
+      CSG_WAZUH_INDEXER_USER: ${CSG_WAZUH_INDEXER_USER:-admin}
+      CSG_WAZUH_INDEXER_PASSWORD: ${CSG_WAZUH_INDEXER_PASSWORD:-}
+      CSG_WAZUH_VERIFY_SSL: ${CSG_WAZUH_VERIFY_SSL:-false}
+      CSG_WAZUH_ALERT_INDEX_PATTERN: ${CSG_WAZUH_ALERT_INDEX_PATTERN:-wazuh-alerts-*}
+      CSG_WAZUH_ARCHIVE_INDEX_PATTERN: ${CSG_WAZUH_ARCHIVE_INDEX_PATTERN:-}
+      CSG_WAZUH_INVENTORY_INDEX_PREFIX: ${CSG_WAZUH_INVENTORY_INDEX_PREFIX:-wazuh-states-inventory}
+      CSG_WAZUH_EVENT_LOOKBACK_SECONDS: ${CSG_WAZUH_EVENT_LOOKBACK_SECONDS:-3600}
+    ports:
+      - "${CSG_API_PORT:-8000}:8000"
+    volumes:
+      - ./experiments/results:/app/experiments/results
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "scripts/healthcheck.py", "--url", "http://127.0.0.1:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 15s
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: csg-worker
+    command: python -m csg.worker
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://csg:change-me-for-local-lab@postgres:5432/cyberstateguardian}
+      CSG_STATE_PROVIDER: ${CSG_STATE_PROVIDER:-fixture}
+      CSG_EVENT_PROVIDER: ${CSG_EVENT_PROVIDER:-fixture}
+      CSG_EVENT_TIME_TOLERANCE_SECONDS: ${CSG_EVENT_TIME_TOLERANCE_SECONDS:-20}
+      CSG_PIPELINE_ON_INGEST: ${CSG_PIPELINE_ON_INGEST:-true}
+      CSG_WAZUH_API_URL: ${CSG_WAZUH_API_URL:-https://host.docker.internal:55000}
+      CSG_WAZUH_INDEXER_URL: ${CSG_WAZUH_INDEXER_URL:-https://host.docker.internal:9200}
+      CSG_WAZUH_DASHBOARD_URL: ${CSG_WAZUH_DASHBOARD_URL:-https://localhost:8443}
+      CSG_WAZUH_API_USER: ${CSG_WAZUH_API_USER:-wazuh}
+      CSG_WAZUH_API_PASSWORD: ${CSG_WAZUH_API_PASSWORD:-}
+      CSG_WAZUH_INDEXER_USER: ${CSG_WAZUH_INDEXER_USER:-admin}
+      CSG_WAZUH_INDEXER_PASSWORD: ${CSG_WAZUH_INDEXER_PASSWORD:-}
+      CSG_WAZUH_VERIFY_SSL: ${CSG_WAZUH_VERIFY_SSL:-false}
+      CSG_WAZUH_ALERT_INDEX_PATTERN: ${CSG_WAZUH_ALERT_INDEX_PATTERN:-wazuh-alerts-*}
+      CSG_WAZUH_ARCHIVE_INDEX_PATTERN: ${CSG_WAZUH_ARCHIVE_INDEX_PATTERN:-}
+      CSG_WAZUH_INVENTORY_INDEX_PREFIX: ${CSG_WAZUH_INVENTORY_INDEX_PREFIX:-wazuh-states-inventory}
+      CSG_WAZUH_SYNC_ENABLED: ${CSG_WAZUH_SYNC_ENABLED:-false}
+      CSG_WAZUH_SYNC_HOST_IDS: ${CSG_WAZUH_SYNC_HOST_IDS:-}
+      CSG_WAZUH_EVENT_LOOKBACK_SECONDS: ${CSG_WAZUH_EVENT_LOOKBACK_SECONDS:-3600}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+    container_name: csg-web
+    environment:
+      CSG_DASHBOARD_API_BASE_URL: ${CSG_DASHBOARD_API_BASE_URL:-http://api:8000}
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://api:8000}
+      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-1}
+    ports:
+      - "${CSG_WEB_PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  csg_postgres_data:

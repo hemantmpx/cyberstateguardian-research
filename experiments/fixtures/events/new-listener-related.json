@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "event_id": "evt-network-001",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:24:45Z",
+      "normalized_type": "network_activity",
+      "actor": {
+        "user": "LOCAL_SYSTEM",
+        "process": "systemupdate.exe"
+      },
+      "target": {
+        "type": "listener",
+        "key": "listener:tcp:0.0.0.0:8443"
+      },
+      "attributes": {
+        "protocol": "tcp",
+        "local_address": "0.0.0.0",
+        "local_port": 8443,
+        "process_name": "systemupdate.exe"
+      },
+      "source": "synthetic_fixture",
+      "source_reference": {
+        "fixture": "new-listener-related.json"
+      },
+      "synthetic": true,
+      "scenario_id": "new-listener-related",
+      "metadata": {
+        "fixture_kind": "scenario_event"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "events": [
+    {
+      "event_id": "evt-service-approved-001",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:19:30Z",
+      "normalized_type": "service_created",
+      "actor": {
+        "user": "LAB/AdminOps",
+        "process": "msiexec.exe"
+      },
+      "target": {
+        "type": "service",
+        "key": "service:approvedagent"
+      },
+      "attributes": {
+        "service_name": "ApprovedAgent"
+      },
+      "source": "synthetic_fixture",
+      "source_reference": {
+        "fixture": "approved-service-install.json"
+      },
+      "synthetic": true,
+      "scenario_id": "approved-service-install",
+      "metadata": {
+        "fixture_kind": "scenario_event"
+      }
+    }
+  ]
+}

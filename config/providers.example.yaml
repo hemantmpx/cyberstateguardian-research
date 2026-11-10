@@ -1,0 +1,17 @@
+state_provider:
+  type: fixture
+  fixture_name: baseline
+  fixture_dir: experiments/fixtures/state
+
+event_provider:
+  type: fixture
+  fixture_set: all
+  fixture_dir: experiments/fixtures/events
+
+hosts:
+  - host_id: win-lab-01
+    hostname: win11-arm-lab
+    role: windows-target
+    os: windows-11
+    architecture: arm64
+    enabled: true

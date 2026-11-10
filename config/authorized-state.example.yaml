@@ -1,0 +1,31 @@
+version: "2026-09-13"
+hosts:
+  win-lab-01:
+    expected_services:
+      - object_key: service:eventlog
+        name: EventLog
+      - object_key: service:windefend
+        name: WinDefend
+    expected_listeners:
+      - object_key: listener:tcp:0.0.0.0:3389
+        protocol: tcp
+        local_address: 0.0.0.0
+        local_port: 3389
+    maintenance_windows:
+      - window_id: lab-maintenance
+        valid_from: "2026-09-13T20:00:00Z"
+        valid_until: "2026-09-13T21:00:00Z"
+        categories: ["service", "listener"]
+        object_keys: ["service:approvedagent"]
+        reason: Approved lab software installation window.
+    approved_changes:
+      - change_id: approved-agent-install
+        category: service
+        object_key: service:approvedagent
+        valid_from: "2026-09-13T20:00:00Z"
+        valid_until: "2026-09-13T21:00:00Z"
+        reason: Approved monitoring agent install.
+    violating_objects:
+      - category: privileged_group
+        object_key: privileged_group:administrators:lab/maintuser
+        reason: Privileged membership changes require separate approval.

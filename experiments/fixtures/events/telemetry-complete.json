@@ -1,0 +1,30 @@
+{
+  "events": [
+    {
+      "event_id": "evt-telemetry-complete-process",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:14:10Z",
+      "normalized_type": "process_start",
+      "actor": {"user": "LAB/Administrator", "process": "powershell.exe"},
+      "target": {"type": "process", "key": "process:sc.exe"},
+      "attributes": {"name": "sc.exe", "service_name": "SystemUpdate"},
+      "source": "synthetic_fixture",
+      "source_reference": {"condition": "complete"},
+      "synthetic": true,
+      "scenario_id": "telemetry-complete"
+    },
+    {
+      "event_id": "evt-telemetry-complete-service",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:14:30Z",
+      "normalized_type": "service_created",
+      "actor": {"user": "LAB/Administrator", "process": "services.exe"},
+      "target": {"type": "service", "key": "service:systemupdate"},
+      "attributes": {"service_name": "SystemUpdate"},
+      "source": "synthetic_fixture",
+      "source_reference": {"condition": "complete"},
+      "synthetic": true,
+      "scenario_id": "telemetry-complete"
+    }
+  ]
+}

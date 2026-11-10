@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "event_id": "evt-process-001",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:14:10Z",
+      "normalized_type": "process_start",
+      "actor": {
+        "user": "LAB/Administrator",
+        "process": "powershell.exe"
+      },
+      "target": {
+        "type": "process",
+        "key": "process:c:/windows/system32/sc.exe:lab/administrator:2026-09-13T20:14:10+00:00"
+      },
+      "attributes": {
+        "name": "sc.exe",
+        "command_line": "sc.exe create SystemUpdate binPath= c:/programdata/systemupdate/systemupdate.exe",
+        "service_name": "SystemUpdate"
+      },
+      "source": "synthetic_fixture",
+      "source_reference": {
+        "fixture": "svc-create-partial.json"
+      },
+      "synthetic": true,
+      "scenario_id": "svc-create-partial",
+      "metadata": {
+        "fixture_kind": "scenario_event"
+      }
+    }
+  ]
+}

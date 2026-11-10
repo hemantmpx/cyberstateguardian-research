@@ -1,0 +1,20 @@
+{
+  "snapshot_id": "snapshot-service-collector-error-win-lab-01",
+  "host_id": "win-lab-01",
+  "built_at": "2026-09-13T20:35:00Z",
+  "source": "synthetic_fixture",
+  "category_statuses": [
+    {
+      "category": "service",
+      "status": "error",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:35:00Z",
+      "message": "synthetic service collector failure"
+    }
+  ],
+  "objects": [],
+  "metadata": {
+    "synthetic": true,
+    "fixture": "service_collector_error"
+  }
+}

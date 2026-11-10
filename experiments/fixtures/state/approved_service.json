@@ -1,0 +1,68 @@
+{
+  "snapshot_id": "snapshot-approved-service-win-lab-01",
+  "host_id": "win-lab-01",
+  "built_at": "2026-09-13T20:20:00Z",
+  "source": "synthetic_fixture",
+  "category_statuses": [
+    {
+      "category": "service",
+      "status": "healthy",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:20:00Z"
+    }
+  ],
+  "objects": [
+    {
+      "category": "service",
+      "object_key": "service:eventlog",
+      "attributes": {
+        "service_name": "EventLog",
+        "display_name": "Windows Event Log",
+        "status": "running",
+        "start_mode": "auto",
+        "binary_path": "c:/windows/system32/svchost.exe -k localservice",
+        "account": "nt authority/localservice"
+      },
+      "source_timestamp": "2026-09-13T20:20:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    },
+    {
+      "category": "service",
+      "object_key": "service:windefend",
+      "attributes": {
+        "service_name": "WinDefend",
+        "display_name": "Microsoft Defender Antivirus Service",
+        "status": "running",
+        "start_mode": "auto",
+        "binary_path": "c:/programdata/microsoft/windows defender/platform/msmpeng.exe",
+        "account": "localsystem"
+      },
+      "source_timestamp": "2026-09-13T20:20:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    },
+    {
+      "category": "service",
+      "object_key": "service:approvedagent",
+      "attributes": {
+        "service_name": "ApprovedAgent",
+        "display_name": "Approved Monitoring Agent",
+        "status": "running",
+        "start_mode": "auto",
+        "binary_path": "c:/program files/approvedagent/agent.exe",
+        "account": "localsystem"
+      },
+      "source_timestamp": "2026-09-13T20:20:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    }
+  ],
+  "metadata": {
+    "synthetic": true,
+    "fixture": "approved_service"
+  }
+}

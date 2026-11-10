@@ -1,0 +1,16 @@
+{
+  "scenario_id": "telemetry-4-heavily-degraded",
+  "description": "Same service persistence with all relevant event telemetry removed while the event source remains nominally available.",
+  "classification": "telemetry-failure",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "telemetry-empty",
+  "telemetry_condition": "heavily_degraded",
+  "event_source_status": "degraded",
+  "expected_deltas": [
+    {"category": "service", "delta_type": "ADD", "object_key": "service:systemupdate"}
+  ],
+  "expected_reconciliation": "UNEXPLAINED",
+  "ground_truth_notes": "Persistent state remains observable; all relevant events are deliberately absent.",
+  "metadata": {"synthetic": true, "telemetry_study": true, "expect_telemetry_inconsistency": true}
+}

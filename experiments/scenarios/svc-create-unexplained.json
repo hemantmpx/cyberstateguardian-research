@@ -1,0 +1,20 @@
+{
+  "scenario_id": "svc-create-unexplained",
+  "description": "A new persistent SystemUpdate service appears with no event evidence.",
+  "classification": "malicious-simulation",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "svc-create-unexplained",
+  "expected_deltas": [
+    {
+      "category": "service",
+      "delta_type": "ADD",
+      "object_key": "service:systemupdate"
+    }
+  ],
+  "expected_reconciliation": "UNEXPLAINED",
+  "ground_truth_notes": "Persistent service was introduced without corroborating event evidence.",
+  "metadata": {
+    "synthetic": true
+  }
+}

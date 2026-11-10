@@ -1,0 +1,20 @@
+{
+  "scenario_id": "new-listener-related",
+  "description": "A new TCP listener appears with matching network activity context.",
+  "classification": "suspicious",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_listener.json",
+  "event_fixture_set": "new-listener-related",
+  "expected_deltas": [
+    {
+      "category": "listener",
+      "delta_type": "ADD",
+      "object_key": "listener:tcp:0.0.0.0:8443"
+    }
+  ],
+  "expected_reconciliation": "PARTIALLY_EXPLAINED",
+  "ground_truth_notes": "Network activity is related context, not proof of a local bind.",
+  "metadata": {
+    "synthetic": true
+  }
+}

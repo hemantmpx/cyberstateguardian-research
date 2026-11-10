@@ -1,0 +1,17 @@
+{
+  "schema_version": "csg-live-pilot-freeze-v1",
+  "protocol_id": "csg-privileged-group-positive-control-v2",
+  "frozen_at_utc": "2026-10-16T17:14:56Z",
+  "status": "frozen_before_target_membership_mutation",
+  "study_classification": "single_trial_category_qualification_pilot",
+  "host_id": "win11-arm-lab",
+  "assigned_trial_count": 1,
+  "randomized": false,
+  "ground_truth": "authorized_benign_local_administration",
+  "maliciousness_evaluated": false,
+  "runner_path": "scripts/run_privileged_group_positive_control_windows_v2.ps1",
+  "runner_sha256": "2c29cb6a36855331d027c03c25656529dcb04b8b77823f3884fc256a1a4c11e1",
+  "protocol_path": "experiments/privileged-group-positive-control-protocol-v2.md",
+  "protocol_sha256": "d3dad445d8fbcfa48f3096a9070a9aaa8d965a540b0f674a93bb9776c3642e5e",
+  "pre_action_failed_attempt_excluded": "privileged-group-positive-20261016T101055Z-d362bc50"
+}

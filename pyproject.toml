@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cyberstateguardian"
+version = "0.1.0"
+description = "Docker-portable security state monitoring and deterministic reconciliation research prototype."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "CyberStateGuardian Research" }]
+dependencies = [
+  "alembic>=1.13",
+  "fastapi>=0.115",
+  "httpx>=0.27",
+  "openai>=1.99",
+  "psycopg[binary]>=3.2",
+  "pydantic>=2.8",
+  "pydantic-settings>=2.4",
+  "PyYAML>=6.0",
+  "SQLAlchemy>=2.0",
+  "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+research = ["scipy>=1.15,<2"]
+dev = [
+  "pytest>=8.2",
+  "pytest-asyncio>=0.23",
+  "ruff>=0.6",
+]
+probe = [
+  "psutil>=5.9",
+  "requests>=2.32",
+]
+
+[project.scripts]
+csg-healthcheck = "scripts.healthcheck:main"
+csg-create-lab-env = "scripts.create_lab_env:main"
+csg-live-lab-check = "scripts.live_lab_check:main"
+csg-setup-wazuh-lab = "scripts.setup_wazuh_lab:main"
+csg-wazuh-lab-check = "scripts.wazuh_lab_check:main"
+csg-sync-wazuh-once = "scripts.sync_wazuh_once:main"
+csg-seed-demo = "scripts.seed_demo:main"
+csg-export-results = "scripts.export_results:main"
+csg-export-live-run = "scripts.export_live_research_run:main"
+csg-export-ai-study = "experiments.ai_context_study:main"
+csg-evaluate-ai-study = "experiments.ai_context_evaluation:main"
+csg-validate-live-campaign = "scripts.validate_live_campaign:main"
+csg-build-research-artifact = "scripts.create_research_artifact:main"
+csg-evaluate-incidents = "experiments.incident_correlation_study:main"
+csg-run-scenarios = "experiments.runner.run_scenarios:main"
+csg-run-transition-fixtures = "experiments.runner.transition_capture_fixtures:main"
+csg-probe = "cyberstateguardian_probe.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["backend", "probe", "."]
+include = ["csg*", "cyberstateguardian_probe*", "experiments*", "scripts*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["backend", "probe", "."]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["backend", "probe", "experiments", "scripts", "tests"]
+extend-exclude = [".wazuh-lab", "dashboard/node_modules", "dashboard/.next"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

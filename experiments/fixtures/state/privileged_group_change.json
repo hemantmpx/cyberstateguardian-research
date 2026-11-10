@@ -1,0 +1,32 @@
+{
+  "snapshot_id": "snapshot-privileged-group-win-lab-01",
+  "host_id": "win-lab-01",
+  "built_at": "2026-09-13T20:30:00Z",
+  "source": "synthetic_fixture",
+  "category_statuses": [
+    {
+      "category": "privileged_group",
+      "status": "healthy",
+      "source": "synthetic_fixture",
+      "observed_at": "2026-09-13T20:30:00Z"
+    }
+  ],
+  "objects": [
+    {
+      "category": "privileged_group",
+      "object_key": "privileged_group:administrators:lab/maintuser",
+      "attributes": {
+        "group": "administrators",
+        "member": "lab/maintuser"
+      },
+      "source_timestamp": "2026-09-13T20:30:00Z",
+      "metadata": {
+        "synthetic": true
+      }
+    }
+  ],
+  "metadata": {
+    "synthetic": true,
+    "fixture": "privileged_group_change"
+  }
+}

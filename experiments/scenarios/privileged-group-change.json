@@ -1,0 +1,20 @@
+{
+  "scenario_id": "privileged-group-change",
+  "description": "A user is added to the local Administrators group.",
+  "classification": "malicious-simulation",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "privileged_group_change.json",
+  "event_fixture_set": "privileged-group-change",
+  "expected_deltas": [
+    {
+      "category": "privileged_group",
+      "delta_type": "ADD",
+      "object_key": "privileged_group:administrators:lab/maintuser"
+    }
+  ],
+  "expected_reconciliation": "CONSISTENT",
+  "ground_truth_notes": "Privileged group change is high risk even when event evidence explains it.",
+  "metadata": {
+    "synthetic": true
+  }
+}

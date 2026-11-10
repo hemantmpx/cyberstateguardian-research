@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "event_id": "evt-group-001",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:29:20Z",
+      "normalized_type": "privileged_group_member_added",
+      "actor": {
+        "user": "LAB/Administrator",
+        "process": "net.exe"
+      },
+      "target": {
+        "type": "privileged_group",
+        "key": "privileged_group:administrators:lab/maintuser"
+      },
+      "attributes": {
+        "group": "administrators",
+        "member": "LAB/MaintUser"
+      },
+      "source": "synthetic_fixture",
+      "source_reference": {
+        "fixture": "privileged-group-change.json"
+      },
+      "synthetic": true,
+      "scenario_id": "privileged-group-change",
+      "metadata": {
+        "fixture_kind": "scenario_event"
+      }
+    }
+  ]
+}

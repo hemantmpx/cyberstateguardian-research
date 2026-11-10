@@ -1,0 +1,20 @@
+{
+  "scenario_id": "approved-service-install",
+  "description": "ApprovedAgent is installed during an approved lab maintenance window.",
+  "classification": "benign",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "approved_service.json",
+  "event_fixture_set": "approved-service-install",
+  "expected_deltas": [
+    {
+      "category": "service",
+      "delta_type": "ADD",
+      "object_key": "service:approvedagent"
+    }
+  ],
+  "expected_reconciliation": "CONSISTENT",
+  "ground_truth_notes": "The raw delta remains visible but authorization context marks it approved.",
+  "metadata": {
+    "synthetic": true
+  }
+}

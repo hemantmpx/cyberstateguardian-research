@@ -1,0 +1,16 @@
+{
+  "scenario_id": "live-service-drift-20260923",
+  "host_id": "win11-arm-lab",
+  "trigger": "A controlled research service was created and then its Windows startup mode was changed.",
+  "expected_sequence": [
+    "CSG native probe observed the service state transition.",
+    "Windows/Wazuh telemetry reported service creation (Event 7045).",
+    "Windows/Wazuh telemetry reported service configuration change (Event 7040).",
+    "The service was deleted by the controlled drill cleanup step."
+  ],
+  "root_cause": "controlled_service_drift_drill",
+  "expected_attack_techniques": [],
+  "authorized_change": false,
+  "evidence_policy": "Claims must be supported by the supplied package; the drill record and deterministic CSG decisions are authoritative.",
+  "scoring_note": "This is a benign controlled validation scenario. Reviewers should not label it as an attack merely because the service was unauthorized in the policy fixture."
+}

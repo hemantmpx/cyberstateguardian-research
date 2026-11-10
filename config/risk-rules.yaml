@@ -1,0 +1,47 @@
+version: "2026-09-13"
+bands:
+  INFO: [0, 9]
+  LOW: [10, 29]
+  MEDIUM: [30, 59]
+  HIGH: [60, 89]
+  CRITICAL: [90, 1000]
+rules:
+  new_service:
+    points: 25
+    explanation: New Windows services create persistence risk.
+  modified_service:
+    points: 20
+    explanation: Service binary, account, or start-mode changes can alter persistence behavior.
+  new_listener:
+    points: 20
+    explanation: New listening ports expand externally reachable surface.
+  privileged_change:
+    points: 40
+    explanation: Privileged membership changes can materially alter host control.
+  scheduled_task:
+    points: 18
+    explanation: Scheduled tasks are common persistence mechanisms.
+  authorization_violation:
+    points: 35
+    explanation: The observed object conflicts with authorized state.
+  unknown_authorization:
+    points: 10
+    explanation: The observed object is not in authorized state.
+  approved_change:
+    points: -15
+    explanation: Approved maintenance lowers triage priority but does not hide the finding.
+  expected_object:
+    points: -20
+    explanation: Expected authorized state lowers triage priority.
+  unexplained_telemetry:
+    points: 25
+    explanation: State changed without matching event evidence.
+  degraded_event_source:
+    points: 5
+    explanation: State changed while the event source was known to be degraded or unavailable; missing evidence is not treated as a healthy-source anomaly.
+  partial_explanation:
+    points: 10
+    explanation: Related evidence exists but expected evidence is missing.
+  stale_source_quality:
+    points: 10
+    explanation: A source quality issue reduces confidence in the observation.

@@ -1,0 +1,20 @@
+{
+  "scenario_id": "svc-create-partial",
+  "description": "A new persistent SystemUpdate service appears, but telemetry only shows related process evidence.",
+  "classification": "suspicious",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "svc-create-partial",
+  "expected_deltas": [
+    {
+      "category": "service",
+      "delta_type": "ADD",
+      "object_key": "service:systemupdate"
+    }
+  ],
+  "expected_reconciliation": "PARTIALLY_EXPLAINED",
+  "ground_truth_notes": "Related sc.exe process exists, but service_created evidence is missing.",
+  "metadata": {
+    "synthetic": true
+  }
+}

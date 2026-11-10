@@ -1,0 +1,16 @@
+{
+  "scenario_id": "telemetry-5-source-unavailable",
+  "description": "Same service persistence while the Wazuh event source is explicitly unavailable.",
+  "classification": "telemetry-failure",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "telemetry-empty",
+  "telemetry_condition": "event_source_unavailable",
+  "event_source_status": "unavailable",
+  "expected_deltas": [
+    {"category": "service", "delta_type": "ADD", "object_key": "service:systemupdate"}
+  ],
+  "expected_reconciliation": "UNEXPLAINED",
+  "ground_truth_notes": "The independent state plane remains active while event retrieval is unavailable.",
+  "metadata": {"synthetic": true, "telemetry_study": true, "expect_telemetry_inconsistency": true}
+}

@@ -1,0 +1,16 @@
+{
+  "scenario_id": "telemetry-3-key-event-removed",
+  "description": "Same service persistence with the key creation event removed and only related process telemetry retained.",
+  "classification": "telemetry-failure",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "svc-create-partial",
+  "telemetry_condition": "key_event_removed",
+  "event_source_status": "degraded",
+  "expected_deltas": [
+    {"category": "service", "delta_type": "ADD", "object_key": "service:systemupdate"}
+  ],
+  "expected_reconciliation": "PARTIALLY_EXPLAINED",
+  "ground_truth_notes": "The persistent service exists, but its primary creation event is deliberately removed.",
+  "metadata": {"synthetic": true, "telemetry_study": true, "expect_telemetry_inconsistency": true}
+}

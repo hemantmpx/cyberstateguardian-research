@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "event_id": "evt-process-ephemeral-001",
+      "host_id": "win-lab-01",
+      "event_time": "2026-09-13T20:08:00Z",
+      "normalized_type": "process_start",
+      "actor": {
+        "user": "LAB/User",
+        "process": "explorer.exe"
+      },
+      "target": {
+        "type": "process",
+        "key": "process:c:/windows/system32/whoami.exe:lab/user:2026-09-13T20:08:00+00:00"
+      },
+      "attributes": {
+        "name": "whoami.exe",
+        "command_line": "whoami.exe"
+      },
+      "source": "synthetic_fixture",
+      "source_reference": {
+        "fixture": "short-lived-process.json"
+      },
+      "synthetic": true,
+      "scenario_id": "short-lived-process",
+      "metadata": {
+        "fixture_kind": "scenario_event"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "scenario_id": "svc-create-consistent",
+  "description": "A new persistent SystemUpdate service appears with a matching service creation event.",
+  "classification": "suspicious",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "svc-create-consistent",
+  "expected_deltas": [
+    {
+      "category": "service",
+      "delta_type": "ADD",
+      "object_key": "service:systemupdate"
+    }
+  ],
+  "expected_reconciliation": "CONSISTENT",
+  "ground_truth_notes": "Synthetic service persistence with direct creation evidence.",
+  "metadata": {
+    "synthetic": true
+  }
+}

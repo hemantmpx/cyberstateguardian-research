@@ -1,0 +1,16 @@
+{
+  "scenario_id": "telemetry-1-complete",
+  "description": "SystemUpdate service persistence with complete process and service telemetry.",
+  "classification": "malicious-simulation",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "new_service.json",
+  "event_fixture_set": "telemetry-complete",
+  "telemetry_condition": "complete",
+  "event_source_status": "available",
+  "expected_deltas": [
+    {"category": "service", "delta_type": "ADD", "object_key": "service:systemupdate"}
+  ],
+  "expected_reconciliation": "CONSISTENT",
+  "ground_truth_notes": "Control condition. Persistent state and key event evidence are both retained.",
+  "metadata": {"synthetic": true, "telemetry_study": true, "expect_telemetry_inconsistency": false}
+}

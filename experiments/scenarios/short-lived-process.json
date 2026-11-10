@@ -1,0 +1,15 @@
+{
+  "scenario_id": "short-lived-process",
+  "description": "A short-lived whoami.exe process appears in events but leaves no persistent state delta.",
+  "classification": "benign",
+  "initial_state_fixture": "baseline.json",
+  "resulting_state_fixture": "baseline.json",
+  "event_fixture_set": "short-lived-process",
+  "expected_deltas": [],
+  "expected_reconciliation": "NOT_APPLICABLE",
+  "ground_truth_notes": "This should create an EVENT_ONLY transient observation, not a fake state delta.",
+  "metadata": {
+    "synthetic": true,
+    "expected_transients": 1
+  }
+}

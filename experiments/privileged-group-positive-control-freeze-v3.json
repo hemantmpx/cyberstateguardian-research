@@ -1,0 +1,36 @@
+{
+  "schema_version": "csg-live-pilot-freeze-v1",
+  "protocol_id": "csg-privileged-group-positive-control-v3",
+  "frozen_at_utc": "2026-10-16T17:34:32Z",
+  "status": "frozen_before_target_membership_mutation",
+  "study_classification": "single_trial_live_category_qualification_pilot",
+  "host_id": "win11-arm-lab",
+  "assigned_trial_count": 1,
+  "randomized": false,
+  "ground_truth": "authorized_benign_local_administration",
+  "maliciousness_evaluated": false,
+  "git_repository_available": false,
+  "runner_path": "scripts/run_privileged_group_positive_control_windows_v3.ps1",
+  "runner_sha256": "b55bc15ec450fb61357fda423658ec623193176c33027ce90ccc39b4577992cb",
+  "protocol_path": "experiments/privileged-group-positive-control-protocol-v3.md",
+  "protocol_sha256": "6f8189dc0aca42c5cf261d330a597733e79b15f3bf3ddfc400791eae06b33f4b",
+  "implementation_source_sha256": {
+    "backend/csg/providers/wazuh.py": "453b3d0fa4578ca1f5907c72b6f09009d9938a1fa59fbf3a6bda8ef76546d3be",
+    "backend/csg/services/reconciliation.py": "932c29f6fef42706bf00bc6aa42843c59b395fdce30d12d32a45a45a56d090b6",
+    "backend/csg/services/transition_reconciliation.py": "94128af01a87460b81289901ff1946697ea587fb7b2653faa46e172606b46b02"
+  },
+  "api_image_id": "sha256:1fde0a3ae7cb8e0fdd807dd0365c18d0a3e6f5a52c868e68f7b8dc546e14620f",
+  "pre_action_failed_attempts_excluded": [
+    "privileged-group-positive-20261016T101055Z-d362bc50",
+    "privileged-group-positive-20261016T171535Z-b54e1439"
+  ],
+  "exact_event_identity_gate": {
+    "host_id": "win11-arm-lab",
+    "event_code": "4732",
+    "group": "Administrators",
+    "member_identity": "exact Windows member SID",
+    "local_record_id_must_equal_wazuh_record_id": true,
+    "csg_reconciliation_status": "CORROBORATED"
+  },
+  "scope_limit": "Qualification pilot only; one Windows endpoint and one authorized benign group-membership operation. Not an attack-detection efficacy result."
+}
